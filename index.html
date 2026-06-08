@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"어차피 평소와 똑같은 내용이겠거니”, 긴급재난문자 그 실효성은?</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Chart.js Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@2.0.1/dist/chartjs-chart-matrix.min.js"></script>
+</head>
+<body>
+
+    <header class="article-container">
+        <h1 class="main-title">"어차피 평소와 똑같은 내용이겠거니”, 긴급재난문자 그 실효성은?</h1>
+        <div class="sub-intro-block">
+            <p class="sub-intro-text">탐사보도: 생명줄이 된 알림, 혹은 일상의 소음이 된 경보</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="article-container">
+            <h2 class="reveal">“당신은 오늘 울린 재난문자의 내용을 기억하십니까?”</h2>
+        </div>
+
+        <div class="visual-wide-container reveal">
+            <div class="photo-wrapper">
+                <div style="display: flex; gap: 10px;">
+                    <img src="assets/photo_01.jpg" alt="서소문 고가 사고 현장 1">
+                    <img src="assets/photo_02.jpg" alt="서소문 고가 사고 현장 2">
+                </div>
+                <span class="caption">5월 28일 3시 기준 서소문고가 철거공사 현장의 모습 ©류성민 기자</span>
+            </div>
+        </div>
+
+        <div class="article-container reveal">
+            <div class="margin-after-visual"></div>
+            <p>5월 26일 서울 서대문구 서소문 고가차도 일부가 붕괴되었다. 굉음과 함께 내려앉은 고가차도로 인해 세명이 사망하고 다른 두명이 부상을 당하게 되었다. 사고의 여파로 경의중앙선은 운행을 중단하고, 구간 통행은 마비되었다. 사고 직후 발송된 긴급 재난문자는 실시간 우회도로 안내와 접근 통제 정보를 제공했다. 실시간 우회도로 안내와 접근 통제 정보는 무분별한 현장 진입을 막았고, 결과적으로 도심 교통 마비와 추가 인명 피해를 선제적으로 차단했다.</p>
+
+            <p>그러나 이 성공 사례 이면에는 방치된 문제가 존재한다. 정작 중대한 경보가 울린 순간에도, 적지 않은 시민들이 시스템의 수신망에서 스스로 이탈해 있었다는 사실이다. 현장 주변에서 진행한 인터뷰에 따르면, 서소문 고가 붕괴 인근에 거주하는 50대 시민은 "어차피 평소와 똑같은 내용이겠거니 하면서 보지 않았다"고 증언했다. 심지어 하루에도 몇 번씩 울리는 알림 소음에 지쳐 스마트폰 설정에서 재난문자를 아예 꺼두었다는 40대 직장인과 외국인 유학생들의 고백도 이어졌다. 생명줄이 되어야 할 알림망이 시민들로부터 외면받고 있는 상황이다.</p>
+
+            <p>시민들의 이러한 반응은 단순한 안전 불감증이 아니다.</p>
+
+            <p>오히려 단기간에 쏟아지는 과도한 정보로 인해 발생하는 이른바 경보 피로 현상의 결과로 보아야 한다. 서소문 고가도로 사고 관련 재난문자 발송 현황사고가 발생한 26일부터 30일까지 발송된 관련 재난문자는 총 25건에 달한다. 특히 사고 당일인 26일에만 전체의 절반에 가까운 11건이 집중적으로 발송되며 스마트폰 경보음이 쉴 새 없이 울렸다.</p>
+        </div>
+
+        <div class="visual-wide-container reveal">
+            <div class="chart-container-outer">
+                <div class="chart-title-area">
+                    <h3 class="chart-title">서소문 재난문자 시간대별 발송 히트맵</h3>
+                    <p class="chart-desc">사고 발생 직후 집중된 발송 현황을 시계열로 분석한 결과입니다.</p>
+                </div>
+                <div class="chart-scroll-box">
+                    <div style="height: 450px; min-width: 600px;">
+                        <canvas id="matrixChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-container reveal">
+            <p>물론 당국이 발송한 25건의 문자 내용은 사고 수습과 교통 통제, 시민들의 교통 편의를 위해 필요한 정보들이었다. 그러나 문제는 유사한 내용의 반복에 있었다. 전체 25건의 재난문자 중 23건이 열차 운행 통제와 그에 관한 업데이트 내용이었다는 점은 주목해 볼 만한 대목이다. 여기에 더해 어떤 문자는 사고 발생지인 서대문구에만 발송된 반면, 어떤 문자는 서울을 넘어 경기도와 인천광역시 등 수도권 전역으로, 심지어 일부 문자는 전국으로까지 발송되기도 했다. 사고 현장과 거리가 멀어 관련성이 낮거나, 해당 노선을 이용하지 않는 시민들 입장에서는 비슷한 내용의 알림을 며칠에 걸쳐 반복적으로 받게 된 셈이다. 시민 안전과 교통 혼잡을 방지하려는 당국의 선제적인 조치였지만, 이러한 동일 정보의 광범위한 반복 전송은 결국 '재난문자 피로도' 문제로 이어지게 된다.</p>
+
+            <h2>안전을 위한 경고가 '피로 물질'이 되기까지</h2>
+
+            <p>재난문자는 국민 안전을 위한 핵심 경보 수단으로 많은 이용자들이 재난문자를 통해 정보를 얻고 있음에도 불구하고 포털 검색에서는 ‘재난문자 끄기’, ‘재난문자 차단’과 같은 연관 검색어를 어렵지 않게 찾아볼 수 있어, 재난문자 이용자들의 불편과 피로감을 짐작할 수 있다.</p>
+
+            <p>실제 이용자들의 솔직한 인식을 살펴보기 위해 유튜브 API를 활용하여 '재난문자' 관련 댓글 65건을 분석하였다. 그 결과, 전체 댓글 65건 중 47건이 재난문자에 대한 불편을 언급한 것으로 나타났다. 세부적으로는 알림과 설정의 불편을 언급한 댓글이 26건으로 가장 많았으며, 과도한 발송과 피로감을 언급한 댓글도 17건 확인되었다. 이를 통해 상당수의 이용자들이 잦은 재난문자 발송과 알림 방식에 불편을 느끼고 있음을 확인할 수 있었다.</p>
+        </div>
+
+        <div class="visual-wide-container reveal">
+            <div class="chart-container-outer">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div class="chart-title-area" style="margin-bottom: 0;">
+                        <h3 class="chart-title">재난문자 여론 및 인식 분석</h3>
+                        <p class="chart-desc">유튜브 댓글 및 트렌드 검색어 분석 데이터입니다.</p>
+                    </div>
+                    <select id="chartSelect">
+                        <option value="youtube">유튜브 댓글 분류</option>
+                        <option value="trend">구글 트렌드 검색어</option>
+                    </select>
+                </div>
+                <div class="chart-scroll-box">
+                    <div id="youtubeWrap" style="height: 400px; min-width: 500px;">
+                        <canvas id="youtubeChart"></canvas>
+                    </div>
+                    <div id="trendWrap" style="height: 400px; min-width: 500px; display: none;">
+                        <canvas id="trendChart"></canvas>
+                        <p class="chart-desc" style="margin-top: 10px;">📊 데이터 수집 기간: 최근 90일(~ 2026-06-07)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-container reveal">
+            <p>더하여, 재난문자에 관한 불편함과 실제 사용 인식을 알아보기 위해 본 기사에서는 지난 5월 12일부터 31일까지 재난문자 인식에 관한 설문조사를 실시하였다. 설문조사에는 한국인 38명과 외국인 51명 등 총 89명이 참여하였다. 본 설문 조사의 결과 또한 재난문자 알림으로 인해 불편을 경험한 적 있다고 응답한 비율은 약 43%로 나타났다. 더하여 재난문자를 수신 받았을 때 첫 문장만 읽는다고 응답한 비율은 71%에 달했다. 이는 상당수 이용자가 재난문자를 확인은 하나, 내용을 충분히 숙지하지 않고 넘어가는 경향이 있음을 나타낸다.</p>
+        </div>
+
+        <div class="visual-wide-container reveal">
+            <div class="chart-container-outer">
+                <div class="chart-title-area" style="text-align: center;">
+                    <h3 class="chart-title">재난문자 수신 시 행동 패턴</h3>
+                    <p class="chart-desc">수신된 정보의 숙지 정도에 대한 설문 결과입니다.</p>
+                </div>
+                <div class="chart-scroll-box" style="text-align: center;">
+                    <div style="height: 400px; max-width: 500px; margin: 0 auto; min-width: 300px;">
+                        <canvas id="doughnutChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-container reveal">
+            <p>그렇다면 긴급재난문자에 이토록 피로감을 느끼는 이유는 무엇일까.</p>
+
+            <p>행정안전부의 ‘재난문자방송 송출 현황’ 공공데이터를 분석해 보면, 시민들이 체감하는 피로감의 실체가 명확한 수치로 증명된다. 2019년 전국 기준 911건에 불과했던 재난문자 발송량은 코로나19 사태를 거치며 2020년 5만 4,734건으로 무려 60배 가량 폭증했다.(출처 : 행정안전부) 더 큰 문제는 감염병 위기 단계가 하향된 이후에도 발송량이 팬데믹 이전 수준으로 회복되지 않았다는 점이다. 확진자 동선 안내가 빠진 자리를 광범위한 '실종자 수색'과 '단순 기상 안내'가 채우면서, 시민들은 여전히 과도한 알림의 홍수 속에 놓여 있다.</p>
+
+            <p>현재 긴급재난문자의 과도한 발송을 막기 위해 경찰청이 발송 주체가 되어 ‘실종경보문자'라는 문자 유형으로 별도로 분리해 운영하고 있다. 그럼에도 실종안내문자로 인해 이용자들이 체감하는 재난문자에 대한 피로도는 여전히 해소되지 않은 것으로 분석된다</p>
+
+            <h2>왜 수용자들의 피로도는 해소되지 않는 것일까?</h2>
+
+            <p>서소문 고가도로 붕괴 사고 당시 발송된 재난문자를 살펴 보면 그 원인을 짐작해 볼수 있다. 실제로 붕괴가 일어난 서울특별시 서대문구에 20건의 재난문자가 발송되었다. 여기서 주목해야 할 점은 그로부터 대략 80에서 90km 가까이 떨어진 경기도 안성시에도 ‘14건’의 재난문자가 발송되었다는 것이다. 즉, 안성시민들은 자신과 관련 없다고 생각되는 타 지역의 사고와 관련된 재난문자를 14건이나 받은 것이다. 문제는 이러한 반복이 수신자의 심리에 누적된다는 데 있다. 자신과 무관한 위험 경보를 거듭 받게 된 시민은 재난문자의 진동음과 경고 화면 자체에 둔감해지고, 정작 자신의 생명과 직결된 재난이 닥쳤을 때조차 그 문자를 또 하나의 알림으로 흘려보낼 위험에 노출된다.</p>
+        </div>
+
+        <div class="visual-wide-container reveal">
+            <div class="chart-container-outer">
+                <div class="chart-title-area">
+                    <h3 class="chart-title">서소문 재난문자 수도권 시군구별 발송 현황</h3>
+                    <p class="chart-desc">기지국 송출 범위에 따른 광역적 발송 현황 지도입니다.</p>
+                </div>
+                <div class="chart-scroll-box">
+                    <div id="map" style="height: 600px; width: 100%; min-width: 600px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-container reveal">
+            <div class="interview-box">
+                <div style="margin-bottom: 30px; text-align: center;">
+                    <img src="assets/photo_03.png" alt="행정안전부" style="max-width: 450px; width: 100%;">
+                    <span class="caption" style="text-align: center;">사진 출처: 세이프타임즈</span>
+                </div>
+                <p>해당 지점들을 재난문자를 송출, 관리하는 행정안전부 재난정보통신과의 재난문자 운영담당 주무관과 서면으로 인터뷰를 진행하였다.</p>
+                
+                <span class="q">-대부분의 사람들이 재난문자의 피로감으로 첫 문장만 읽거나 읽지 않고 있습니다. 해당 문제를 해소하기 위한 방안으로 진행하고 계신 것이 있는지?</span>
+                <span class="a">“반복적인 내용은 작년에 중복, 반복 발송 금지 규정을 신설하고 매 분기마다 재난문자 사용기관 교육을 통해 자제하도록 운영하고 있습니다. 그리고 앞에 제시된 한 두 줄만 보고도 나에게 필요한 정보인지 아닌지 파악이 어느 정도 가능합니다. 따라서 앞에 중요한 내용이 들어갈 수 있도록 운영하고 있습니다.”</span>
+                
+                <span class="q">-실시한 설문조사에서 재난문자 발송에 대한 불편함의 원인으로 '현재 위치와 관련 없는 문자'라는 응답이 매우 자주 나타났다. 해당 불편함에 대해서 고려 중인 해결방안이 있는지?</span>
+                <span class="a">“현재 재난문자는 기지국 기반으로 송출을 하고 있습니다. 이에 시도 및 시/군/구 경계 지역의 분들께서는 위치와 관련 없는 문자를 받으시는 경우가 있습니다. 송출범위를 적게 하면 경계 지역분들 중 못 받으시는 분들이 생길 수 있기 때문에 경계보다 좀 더 넓은 범위로 송출하여 빈틈없이 재난문자를 수신하도록 함으로써 생명, 신체, 재산을 지키도록 정보를 제공하는 것이 더 중요하다고 생각합니다.”</span>
+            </div>
+
+            <h2>재난문자, 앞으로의 방향성은?</h2>
+
+            <p>인터뷰를 통해 반복적인 내용의 재난문자에 대한 피로도를 행정안전부 측도 인지하고 있으며, 이를 개선하기 위해 노력하고 있음을 알 수 있었다. 즉, 긴급재난문자가 ‘재난을 시민들에게 알리는’ 역할로서 신뢰도는 유지하고 있으나, 그 현재 빈번한 문자 발송으로 인한 정보 과잉 및 일상적 피로감이 주된 문제인 것이다.</p>
+
+            <p>지난 5월 12일부터 31일까지 구글폼을 통해 실시한 설문조사 결과로 볼 때, 반복적인 재난문자 송신으로 피로감을 호소하면서도 재난문자의 신뢰도는 여전히 높은 것으로 나타났다. 앞서 제시한 재난문자의 반복성으로 피로감을 호소하면서도 재난과 위험에 대한 정보를 얻는 창구로 재난문자가 가장 쉽고 빠르게 접근할 수 있고, 국가에서 운영, 관리하고 있어 정보에 대한 신뢰도가 높은 것이 그 이유로 볼 수 있다.</p>
+
+            <p>현재 안전 재난문자는 재난의 성격으로 분류하기에 모호하거나 수신자에게 다소 불필요한 정보라는 점을 지적 받고 있다. 재난 경보 텍스트 상관관계 분석에 따르면, 재난 경보의 관련성은 사용자 만족도에 큰 영향을 미치는 요인이다. 실제 위험 지역과 수신자 위치를 기반으로 필수 대상에게 경보를 우선적으로 전달하여 시스템을 강화해야 한다.</p>
+        </div>
+
+        <div class="visual-wide-container reveal">
+            <div class="photo-wrapper" style="max-width: 650px; margin: 0 auto;">
+                <img src="assets/photo_04.png" alt="J-Alert">
+                <span class="caption" style="text-align: center;">사진 출처:일본 J-Alert Safety tips</span>
+            </div>
+        </div>
+
+        <div class="article-container reveal">
+            <div class="margin-after-visual"></div>
+            <p>일본의 전국순시경보시스템인 J-Alert는 필요한 정보들을 간략하게 초단위로 자동 발송 운영하고 있다. 더불어 TV, 라디오, 지자체 방송, 전광판, Safety tips 앱 알림 등 다양한 매체를 통해 휴대전화 문자에만 의존하지 않는 다중 전달 체계를 구축하고 있다. 일본의 경우 재난문자로 전송하는 재난 위험도 기준이 높게 설정되어 있어, 상대적으로 위험도가 높은 재난을 중심으로 경보를 발송하고 있다. J-Alert는 수신자가 재난 정보 중 일부 유형을 선택적으로 수신/차단할 수 있도록 설정 기능을 강화하거나 다중 전달 체계를 사용하고 있다. 이를 통해 위험도, 관여도에 따라 수신 정도를 차별화한다면, 시민의 피로감을 줄이면서도 긴급 재난문자의 신뢰성과 실효성을 유지할 수 있을 것으로 보인다.</p>
+
+            <p>재난문자뿐 아니라 TV, 방송, ‘국민안전24’와 같은 모바일 앱 등을 통한 다중 전달 체계를 구축해야 한다. 기상,기후, 실종자 관련의 안전 재난문자의 경우, 수신자의 피로도를 높이는 주 원인으로 분석되었다. 재난의 특성과 위험 수준에 따라 채널을 구분하고, 발송 기준을 더욱 명확하게 세분화하여 불필요한 중복 발송을 줄이고 수신자의 피로도를 완화해야 한다. 위급, 긴급 재난문자의 경우에만 재난문자로 발송하도록 하고, 비교적 가벼운 안전 재난문자의 경우는 ‘카카오톡’, ‘안전디딤돌앱’ 등 모바일 앱을 통해 전달하는 방식을 제안할 수 있다. 또한, 외국인을 대상으로 재난문자를 자동으로 번역하여 전달하는 Emergency Ready App이 존재하지만 잘 알려져 있지 않아 적극적인 홍보가 필요한 실정이다. 재난문자는 ‘많이 보내는 것’보다 ‘필요한 사람에게 필요한 정보를 정확하게 전달하는 것’에 초점을 맞추어야 한다.</p>
+
+            <p>재난문자뿐 아니라 TV, 방송, ‘국민안전24’와 같은 모바일 앱 등을 통한 다중 전달 체계로 불필요한 중복 수신을 줄이고 정보 활용도를 높일 수 있다. 재난의 특성과 위험 수준에 따라 발송 기준을 더욱 명확하게, 세분화하여 불필요한 중복 발송을 줄이고 수신자의 피로도를 완화해야 한다. 또한, 외국인을 대상으로 재난문자를 자동으로 번역하여 전달하는 Emergency Ready App이 존재하지만 잘 알려져 있지 않아 적극적인 홍보가 필요한 실정이다.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="article-container">
+            <p>&copy; 2026 탐사보도 프로젝트 - 긴급재난문자 실효성 보고서</p>
+            <p>데이터 분석 및 시각화: Gemini CLI | 서체: Pretendard</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
