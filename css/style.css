@@ -1,0 +1,334 @@
+/* ==========================================================================
+   0. CSS 변수 및 기본 초기화 (탐사보도 톤앤매너)
+   ========================================================================== */
+:root {
+  --bg-color: #F8F6F1;         /* 오프화이트: 눈이 편안한 아날로그 신문 지면 톤 */
+  --text-color: #111111;       /* 깊은 검정 */
+  --text-muted: #444444;       /* 짙은 회색 */
+  --accent-color: #8B1A1A;     /* 포인트 컬러: 딥 레드 (머스타드 교체 시 #C8932C 사용) */
+  --border-color: #E2DFD5;     /* 테두리선 및 구분선 톤 */
+  --font-serif: 'Noto Serif KR', serif;
+  --font-sans: 'Noto Sans KR', sans-serif;
+  --max-content-width: 740px;  /* 텍스트 읽기 가장 쾌적한 가로폭 */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-serif);
+  line-height: 1.8;
+  word-break: keep-all;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   1. 헤더 (Hero Header)
+   ========================================================================== */
+.hero-header {
+  padding: 100px 20px 60px 20px;
+  border-bottom: 1px solid var(--border-color);
+  text-align: center;
+  background-color: #F3EFE6; /* 헤더 영역에 깊이감을 더하기 위한 약간 어두운 베이지 */
+}
+
+.header-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.category {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.main-title {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: 2.4rem;
+  line-height: 1.35;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.meta-info {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: #777;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   2. 본문 레이아웃 및 텍스트 구성
+   ========================================================================== */
+.content-wrapper {
+  padding: 40px 0;
+}
+
+.story-section {
+  margin-bottom: 100px;
+}
+
+/* 기사 텍스트 기본 영역 */
+.article-text {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  color: #000;
+}
+
+p {
+  font-size: 1.05rem;
+  margin-bottom: 1.8rem;
+  color: var(--text-color);
+  text-align: justify;
+}
+
+/* 인용구 처리 규칙 (좌측 4px 컬러 바) */
+blockquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  border-left: 4px solid var(--accent-color);
+  padding-left: 20px;
+  margin: 40px 0;
+}
+
+/* ==========================================================================
+   3. 사진 및 멀티미디어 컨테이너
+   ========================================================================== */
+/* 가로 넓은 레이아웃 (최대 1100px) */
+.wide-layout {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+/* 가로 2열 배치 (사진 1, 2) */
+.double-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.media-item {
+  margin-bottom: 20px;
+}
+
+.media-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+  background-color: #eae6db;
+}
+
+figcaption {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   4. 시각화 영역 (시각화 1 ~ 4)
+   ========================================================================== */
+.visualization-container {
+  background-color: #FFFFFF;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 40px 20px;
+  margin: 60px auto;
+}
+
+/* 화면을 꽉 채우는 풀 블리드 지도 레이아웃 */
+.full-bleed {
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.vis-header {
+  max-width: var(--max-content-width);
+  margin: 0 auto 30px auto;
+  padding: 0 20px;
+}
+
+.vis-header.text-center {
+  text-align: center;
+}
+
+.vis-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.vis-desc {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* 차트/지도 컨테이너 본체 */
+.chart-box {
+  width: 100%;
+  min-height: 450px;
+  background-color: #FAF9F6;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.full-height {
+  min-height: 600px; /* 지도를 위한 큰 컨테이너 크기 */
+}
+
+.placeholder-text {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: #999;
+}
+
+/* ==========================================================================
+   5. [html 1 ~ 4 개별 소스 코드 커스텀 CSS 영역]
+   원본 HTML 소스코드에 삽입되어 있던 지명/차트 전용 스타일을 여기에 몰아서 추가하십시오.
+   ========================================================================== */
+/* 예시: 
+#disaster-heatmap-container canvas {
+  width: 100% !important;
+}
+*/
+
+/* ==========================================================================
+   6. 스크롤 인터랙션 (Intersection Observer 용)
+   ========================================================================== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   7. 푸터 (Footer)
+   ========================================================================== */
+.main-footer {
+  background-color: #111111;
+  color: #999999;
+  padding: 60px 20px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+}
+
+.footer-container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+}
+
+.credit {
+  margin-bottom: 10px;
+  color: #CCCCCC;
+}
+
+.credit strong {
+  color: #FFFFFF;
+  margin-right: 10px;
+}
+
+.footer-divider {
+  border: 0;
+  border-top: 1px solid #333333;
+  margin: 30px 0;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: #666666;
+}
+
+/* ==========================================================================
+   8. 반응형 레이아웃 (768px 이하 모바일 디바이스)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero-header {
+    padding: 60px 15px 40px 15px;
+  }
+
+  .main-title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .double-col {
+    grid-template-columns: 1fr; /* 모바일에서는 사진 2장이 세로 배열로 정렬 */
+    gap: 15px;
+  }
+
+  .story-section {
+    margin-bottom: 60px;
+  }
+
+  .chart-box {
+    min-height: 350px;
+  }
+  
+  .full-height {
+    min-height: 450px;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.4rem;
+  }
+
+  .section-title {
+    font-size: 1.35rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+}

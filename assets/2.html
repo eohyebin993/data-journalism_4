@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>재난문자 분석 대시보드</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+  }
+
+  .card {
+    width: 750px;
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+  }
+
+  select {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 13px;
+    padding: 6px;
+  }
+
+  .chart-area {
+    margin-top: 50px;
+  }
+
+  .chart-wrap {
+    display: none;
+  }
+
+  .chart-wrap.active {
+    display: block;
+  }
+
+  #detailBox {
+    margin-top: 20px;
+    font-size: 13px;
+    display: none;
+  }
+
+  #period {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <select id="chartSelect">
+    <option value="youtube">유튜브 댓글 분석</option>
+    <option value="trend">구글 트렌드 검색어</option>
+  </select>
+
+  <div class="chart-area">
+
+    <!-- 파이차트 -->
+    <div class="chart-wrap active" id="youtubeWrap">
+      <canvas id="youtubeChart"></canvas>
+    </div>
+
+    <!-- 바차트 -->
+    <div class="chart-wrap" id="trendWrap">
+      <canvas id="trendChart"></canvas>
+
+      <div id="period">
+        📊 데이터 수집 기간: 최근 90일(~ 2026-06-07)
+      </div>
+    </div>
+
+  </div>
+
+  <div id="detailBox">
+    <b>상세 검색어</b>
+    <ul id="keywordList"></ul>
+  </div>
+
+</div>
+
+<script>
+
+//////////////////////////////
+// 1. 파이차트 (hover tooltip 핵심)
+//////////////////////////////
+
+const pieLabels = [
+  "알림 소음/설정불편",
+  "중립 및 기타의견",
+  "과도한 발송/피로감",
+  "수신 지연/뒷북 불만"
+];
+
+const pieData = [26, 18, 17, 4];
+
+const total = pieData.reduce((a,b)=>a+b,0);
+
+new Chart(document.getElementById("youtubeChart"), {
+  type: "pie",
+  data: {
+    labels: pieLabels,
+    datasets: [{
+      data: pieData,
+      backgroundColor: [
+        "rgba(26,115,232,0.8)",
+        "rgba(100,181,246,0.8)",
+        "rgba(207,216,220,0.8)",
+        "rgba(55,71,79,0.8)"
+      ],
+      borderColor: "#fff",
+      borderWidth: 2
+    }]
+  },
+
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: "재난문자 관련 유튜브 댓글 분류 (총 65건)",
+        font: { size: 16 }
+      },
+
+      legend: {
+        position: "bottom"
+      },
+
+      // 🔥 핵심: hover tooltip
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            const label = context.label;
+            const value = context.parsed;
+            const percent = ((value / total) * 100).toFixed(1);
+
+            return `${label} : ${value}건 (${percent}%)`;
+          }
+        }
+      }
+    }
+  }
+});
+
+//////////////////////////////
+// 2. 바차트
+//////////////////////////////
+
+const groupData = {
+  "재난문자 유형": ["긴급 재난 문자 18","위급 재난 문자 4","재난 안전 문자 12","안전 재난 문자 10"],
+  "끄기 / 차단": ["재난 문자 끄기 20","아이폰 재난 문자 끄기 9","재난 문자 차단 6","아이폰 긴급 재난 문자 끄기 3","긴급 재난 문자 차단 2"],
+  "디바이스 / 설정": ["아이폰 재난 문자 19","재난 문자 아이폰 18","재난 문자 설정 2"],
+  "커뮤니티 / 기타": ["재난 문자 디시 3","재난 문자 다시 보기 3"]
+};
+
+new Chart(document.getElementById("trendChart"), {
+  type: "bar",
+  data: {
+    labels: Object.keys(groupData),
+    datasets: [{
+      label: "비율 (%)",
+      data: [34.1, 31.0, 30.2, 4.7],
+      backgroundColor: [
+        "rgba(26,115,232,0.8)",
+        "rgba(66,133,244,0.8)",
+        "rgba(52,168,83,0.8)",
+        "rgba(251,188,5,0.8)"
+      ]
+    }]
+  },
+
+  options: {
+    plugins: {
+      legend: { display: false }
+    },
+
+    onClick: (evt, elements) => {
+      if (!elements.length) return;
+
+      const idx = elements[0].index;
+      const key = Object.keys(groupData)[idx];
+
+      const ul = document.getElementById("keywordList");
+      ul.innerHTML = "";
+
+      groupData[key].forEach(v => {
+        const li = document.createElement("li");
+        li.textContent = v;
+        ul.appendChild(li);
+      });
+    }
+  }
+});
+
+//////////////////////////////
+// 3. 전환 로직
+//////////////////////////////
+
+const select = document.getElementById("chartSelect");
+const youtubeWrap = document.getElementById("youtubeWrap");
+const trendWrap = document.getElementById("trendWrap");
+const detailBox = document.getElementById("detailBox");
+
+function showChart(type) {
+  youtubeWrap.classList.remove("active");
+  trendWrap.classList.remove("active");
+
+  if (type === "youtube") {
+    youtubeWrap.classList.add("active");
+    detailBox.style.display = "none";
+  } else {
+    trendWrap.classList.add("active");
+    detailBox.style.display = "block";
+  }
+}
+
+select.addEventListener("change", (e) => {
+  showChart(e.target.value);
+});
+
+showChart("youtube");
+
+</script>
+
+</body>
+</html>
