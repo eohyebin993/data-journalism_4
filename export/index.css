@@ -1,0 +1,234 @@
+/* index.css - 시각적 균형 및 가독성 최적화 버전 */
+
+/* 1. Reset & Typography */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+body {
+    background-color: #FFFFFF;
+    color: #222222;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    line-height: 1.8;
+    word-break: keep-all;
+    overflow-x: hidden;
+}
+
+/* 2. Layout & Spacing */
+.article-container {
+    max-width: 720px; /* 본문 폭 소폭 축소로 집중도 향상 */
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.visual-wide-container {
+    max-width: 850px; /* 사진/시각자료 폭 축소 (기존 950px -> 850px) */
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* 3. Header & Titles */
+header {
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+h1.main-title {
+    font-size: 42px;
+    font-weight: 800; /* ExtraBold(900)에서 Bold(800)로 하향 조정 */
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    color: #111111;
+    margin-bottom: 35px;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #111111;
+    margin-top: 80px; /* 상단 여백 소폭 축소 */
+    margin-bottom: 20px; /* 소제목과 본문 사이 간격 대폭 축소 (기존 45px -> 20px) */
+}
+
+p {
+    font-size: 16.5px;
+    font-weight: 400;
+    margin-bottom: 1.6rem;
+    color: #333333;
+    text-align: justify;
+}
+
+/* 4. Specialized Blocks */
+.sub-intro-block {
+    border-left: 3px solid #333333;
+    padding: 2px 0 2px 20px;
+    margin-bottom: 40px;
+}
+
+.sub-intro-text {
+    font-size: 19px;
+    font-weight: 500;
+    color: #555555;
+    line-height: 1.5;
+}
+
+.quote-block {
+    margin: 60px 0;
+    text-align: center;
+}
+
+.quote-text {
+    font-size: 21px;
+    font-weight: 500;
+    color: #111111;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.interview-box {
+    background: #F9F9F9;
+    padding: 50px 35px;
+    margin: 60px 0;
+    border-radius: 4px;
+}
+
+.q {
+    font-weight: 700;
+    color: #111111;
+    font-size: 17px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.a {
+    font-weight: 400;
+    color: #444444;
+    display: block;
+    margin-bottom: 30px;
+}
+
+/* 5. Photos & Captions */
+.photo-wrapper {
+    margin: 40px auto;
+}
+
+.photo-wrapper img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+}
+
+.caption {
+    font-size: 12.5px;
+    color: #777777;
+    margin-top: 8px;
+    display: block;
+    text-align: left;
+}
+
+.margin-after-visual {
+    margin-bottom: 40px;
+}
+
+/* 6. Visualization Containers (Clipping Fix) */
+.chart-container-outer {
+    width: 100%;
+    max-width: 850px;
+    margin: 50px auto;
+    background: #FFFFFF;
+}
+
+.chart-scroll-box {
+    width: 100%;
+    overflow: hidden; /* 잘림 방지를 위해 래퍼 최적화 */
+    border: 1px solid #EEEEEE;
+    padding: 25px;
+    position: relative;
+}
+
+/* Leaflet 전용 스타일 보완 */
+#map {
+    z-index: 1;
+}
+
+.info {
+    padding: 8px 12px;
+    font-size: 13px;
+    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    line-height: 20px;
+    color: #333;
+}
+.info h4 { margin: 0 0 5px; color: #111; }
+
+.legend {
+    line-height: 18px;
+    color: #555;
+    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.legend i {
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+
+.sigungu-label {
+    background: transparent;
+    border: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 10px;
+    text-shadow: 0 0 3px white;
+    box-shadow: none;
+}
+
+/* 7. UI Components */
+select#chartSelect {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 13px;
+    padding: 6px 10px;
+    border: 1px solid #DDD;
+    background: #FFF;
+    margin-bottom: 15px;
+}
+
+/* 8. Interactions */
+.reveal {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 9. Footer */
+footer {
+    padding: 80px 0;
+    border-top: 1px solid #EEEEEE;
+    color: #999999;
+    text-align: center;
+    font-size: 13.5px;
+}
+
+/* 10. Responsive */
+@media (max-width: 768px) {
+    h1.main-title { font-size: 30px; }
+    h2 { font-size: 22px; margin-top: 60px; }
+    p { font-size: 16px; }
+    header { margin-top: 50px; }
+    .interview-box { padding: 35px 20px; }
+}
